@@ -11,12 +11,14 @@
 	     '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-(unless (package-installed-p 'evil)
-  (package-refresh-contents)
-  (package-install 'evil))
-(unless (package-installed-p 'solarized-theme)
-  (package-refresh-contents)
-  (package-install 'solarized-theme))
+(defun install-package (package-name)
+  "Install a package by name"
+  (unless (package-installed-p package-name)
+    (package-refresh-contents)
+    (package-install package-name)))
+
+(install-package 'evil)
+(install-package 'solarized-theme)
 
 (require 'evil)
 (evil-mode 1)
